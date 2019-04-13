@@ -106,7 +106,7 @@
 
 
 	<!-- 自定义Realm -->
-	<!--<bean id="myRealm" class="com.qianfeng.realm.MyRealm"/>-->
+	<bean id="myRealm" class="com.qianfeng.realm.MyRealm"/>
 
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">

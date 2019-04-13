@@ -2,6 +2,8 @@ package com.qianfeng.dao;
 
 import com.qianfeng.entity.TUser;
 
+import java.util.List;
+
 public interface TUserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,11 @@ public interface TUserMapper {
     int updateByPrimaryKeySelective(TUser record);
 
     int updateByPrimaryKey(TUser record);
+
+    List<String> findRoleByName(String name);
+
+    List<String> findPermisionByName(String name);
+
+
+    String findPwdByName(String name);
 }
