@@ -19,6 +19,6 @@ public interface TCourseMapper {
 
     public  TCourse  findByName(String name);
 
-    public   List<TCourse> findAll();
+    public List<TCourse> findAll();
 
 }

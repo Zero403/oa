@@ -30,7 +30,7 @@ public class CourseController {
         }
 
     }
-    @RequestMapping("/courselist.do")
+    @RequestMapping("/coursepage.do")
     public JsonBean listCou(Model model){
         List<TCourse> list = courseService.findAll();
 
