@@ -103,4 +103,14 @@
       type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" parameterType="com.qianfeng.entity.TCourse">
+    SELECT * from t_course
+  </select>
+
+  <select id="findByName" parameterType="java.lang.String" resultType="com.qianfeng.entity.TCourse">
+
+    select * from t_course where name=#{name}
+
+  </select>
 </mapper>

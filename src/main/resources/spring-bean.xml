@@ -44,24 +44,24 @@
 		<property name="testOnReturn" value="false" />
 		
 	</bean>
-
+	
 	<!-- 2 创建Mybatis的工厂对象 -->
 	<bean id="sqlSessionFactory"
-		  class="org.mybatis.spring.SqlSessionFactoryBean">
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!--设置数据库连接池 -->
 		<property name="dataSource" ref="dataSource"></property>
-
+		
 		<!-- 加载mybatis主配置文件
 			classpath: 表示文件所在的路径
 				如果是普通的java程序，classpath表示bin目录的路径
 				如果是web程序，classpath 表示classes目录的路径
 		 -->
 		<property name="configLocation" value="classpath:mybatis.xml"/>
-
+		
 		<!-- 加载映射文件
 			*.xml 表示所有的xml文件
 		 -->
-		<property name="mapperLocations" value=" classpath*:com/qianfeng/mapper/*.xml"/>
+		<property name="mapperLocations" value="classpath:com/qianfeng/mapping/*.xml"/>
 	</bean>
 	
 	<!--3设置Mybatis的映射接口 -->
@@ -110,7 +110,7 @@
 
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<!--<property name="realm" ref="myRealm"/>-->
+		<property name="realm" ref="myRealm"/>
 		<property name="cacheManager" ref="cacheManager" />
 		<property name="rememberMeManager" ref="rememberMeManager" />
 	</bean>
@@ -151,7 +151,6 @@
 		<!-- Shiro连接约束配置,即过滤链的定义 -->
 		<property name="filterChainDefinitions">
 			<value>
-				/login.html = anon
 				<!--  一般设置和认证相关的配置
 				 	和权限相关的一般使用注解
 				/login.jsp = anon
