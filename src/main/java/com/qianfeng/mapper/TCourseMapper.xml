@@ -104,7 +104,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="findAll" parameterType="com.qianfeng.entity.TCourse">
+  <select id="findAll" resultType="com.qianfeng.entity.TCourse">
    SELECT id,name,week,createdate,type from t_course
   </select>
 

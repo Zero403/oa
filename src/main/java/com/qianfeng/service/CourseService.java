@@ -8,7 +8,7 @@ public interface CourseService {
 
     public void addCourse(TCourse tCourse);
 
-    public List<TCourse> findAll();
+    public List<TCourse> findAllCourse();
 
     public void deleteCouById(Integer id);
 

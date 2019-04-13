@@ -29,7 +29,7 @@ public class CourseServiceimpl implements CourseService{
     }
 
     @Override
-    public List<TCourse> findAll() {
+    public List<TCourse> findAllCourse() {
         List<TCourse> list = null;
         try {
             list = tCourseMapper.findAll();
