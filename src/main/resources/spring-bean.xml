@@ -61,7 +61,7 @@
 		<!-- 加载映射文件
 			*.xml 表示所有的xml文件
 		 -->
-		<property name="mapperLocations" value="classpath:com/qianfeng/mapping/*.xml"/>
+		<property name="mapperLocations" value="classpath:com/qianfeng/mapper/*.xml"/>
 	</bean>
 	
 	<!--3设置Mybatis的映射接口 -->
@@ -106,11 +106,11 @@
 
 
 	<!-- 自定义Realm -->
-	<bean id="myRealm" class="com.qianfeng.realm.MyRealm"/>
+	<!--<bean id="myRealm" class="com.qianfeng.realm.MyRealm"/>-->
 
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="realm" ref="myRealm"/>
+		<!--<property name="realm" ref="myRealm"/>-->
 		<property name="cacheManager" ref="cacheManager" />
 		<property name="rememberMeManager" ref="rememberMeManager" />
 	</bean>

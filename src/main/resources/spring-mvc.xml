@@ -55,7 +55,7 @@
     
     <!-- 将静态资源 交给tomcat默认的servlet进行处理 -->
     <!--<mvc:default-servlet-handler/>-->
-    <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
+    <!--<mvc:resources mapping="/js/**" location="/js/"></mvc:resources>-->
     
     
     <!-- 1 如果针对控制器中的方法的形参，可以直接使用相关验证的注解，需要增加该配置 -->
