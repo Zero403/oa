@@ -29,6 +29,6 @@ public interface TUserMapper {
             "WHERE u.id = (SELECT id from t_user where no = #{name})")
     List<String> findPermisionByName(String name);
 
-    @Select("SELECT `password` from t_user WHERE no = #{name}")
-    String findPwdByName(String name);
+    @Select("SELECT * from t_user WHERE no = #{name}")
+    TUser findPwdByName(String name);
 }

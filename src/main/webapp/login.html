@@ -22,7 +22,7 @@
 <body class="layui-bg-black">
 	<div class="layui-canvs"></div>
 	<div class="layui-layout layui-layout-login">
-		<form action="login.do" method="post">
+		<form action="login.do" method="post" onsubmit="return false">
 			<h1>
 				<strong>滴答办公系统登录</strong> <em>Tick-tock Office System</em>
 			</h1>
@@ -76,6 +76,22 @@
 				}
 			});
 		});
+
+		$("form").submit(function(){
+			$.ajax({
+				url:"login.do",
+				type:"post",
+				data:$("form").serialize(),
+				dataType:"json",
+				success:function (data) {
+					if (data.code == 1){
+						window.location.href = "index.html"
+					} else {
+						alert(data.data)
+					}
+				}
+			})
+		})
 	</script>
 </body>
 </html>

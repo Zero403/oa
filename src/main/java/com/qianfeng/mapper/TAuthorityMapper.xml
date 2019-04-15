@@ -103,4 +103,18 @@
       type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <resultMap id="VMenu" type="com.qianfeng.vo.VMenu">
+    <result property="pTitle" column="pTitle"></result>
+    <collection property="list" javaType="java.util.ArrayList" resultMap="com.qianfeng.dao.TUserMapper.BaseResultMap"></collection>
+  </resultMap>
+  <select id="findMenuByUserId" parameterType="int" resultMap="VMenu">
+    SELECT ap.title pTitle, sa.* FROM t_authority sa INNER JOIN t_authority ap ON sa.parentId = ap.id
+    INNER JOIN t_roleauthority ar ON sa.id = ar.aid
+    INNER JOIN t_role r ON ar.rid = r.id
+    INNER JOIN t_userrole ur on ur.rid = r.id
+    INNER JOIN t_user u on u.id = ur.uid
+    WHERE u.id = #{userId}
+  </select>
 </mapper>

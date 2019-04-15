@@ -43,7 +43,7 @@ public class MyRealm extends AuthorizingRealm {
         // 获取输入的用户名
         String name = (String)token.getPrincipal();
         // 根据用户名从数据库中查询密码
-        String passowrd = TUserMapper.findPwdByName(name);
+        String passowrd = TUserMapper.findPwdByName(name).getPassword();
         // 创建认证对象
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(name, passowrd, this.getName());
 
