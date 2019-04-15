@@ -1,6 +1,9 @@
 package com.qianfeng.dao;
 
 import com.qianfeng.entity.TUser;
+import com.qianfeng.vo.VUser;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -29,6 +32,12 @@ public interface TUserMapper {
             "WHERE u.id = (SELECT id from t_user where no = #{name})")
     List<String> findPermisionByName(String name);
 
-    @Select("SELECT * from t_user WHERE no = #{name}")
-    TUser findPwdByName(String name);
+
+    @Select("SELECT * from t_user WHERE no = #{name} and flag = 1")
+    TUser findUserByName(String name);
+    @Select("SELECT password from t_user WHERE no = #{name} and flag = 1")
+    String findPwdByName(String name);
+
+
+    List<VUser> findAllUserWithRole(@Param("page") int page, @Param("limit") int limit);
 }

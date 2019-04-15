@@ -3,6 +3,8 @@ package com.qianfeng.dao;
 import com.qianfeng.entity.TAuthority;
 import com.qianfeng.vo.VMenu;
 
+import java.util.List;
+
 public interface TAuthorityMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,5 +18,5 @@ public interface TAuthorityMapper {
 
     int updateByPrimaryKey(TAuthority record);
 
-    VMenu findMenuByUserId(int userId);
+    List<VMenu> findMenuByUserId(int userId);
 }
