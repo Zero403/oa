@@ -217,6 +217,7 @@
         </resources>
 
         <!--<finalName>oa</finalName>-->
+
         <plugins>
             <!-- tomcat插件 -->
             <plugin>

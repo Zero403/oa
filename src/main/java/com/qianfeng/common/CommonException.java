@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qianfeng.utils.JsonUtils;
 
+import java.util.Date;
+
 // 统一处理异常
 // 控制器没有处理的异常，会被该类接收进行处理
 @ControllerAdvice
@@ -16,6 +18,8 @@ public class CommonException {
 	@ExceptionHandler(Exception.class)
 	public JsonBean commonException(Exception e){
 		
+
 		return JsonUtils.createJsonBean(0, 1,e.getMessage());
+
 	}
 }
