@@ -20,11 +20,9 @@
     delete from t_depart
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.qianfeng.entity.TDepart">
-    insert into t_depart (id, name, Createtime, 
-      flag)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, 
-      #{flag,jdbcType=INTEGER})
+  <insert id="insert" >
+    insert into t_depart (id, name, createtime)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.qianfeng.entity.TDepart">
     insert into t_depart
@@ -76,7 +74,17 @@
     update t_depart
     set name = #{name,jdbcType=VARCHAR},
       Createtime = #{createtime,jdbcType=DATE},
-      flag = #{flag,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <delete id="deleteTDpart" parameterType="int">
+    delete from t_depart
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="findAllTDpart" resultType="com.qianfeng.entity.TDepart">
+    select <include refid="Base_Column_List" />
+    from t_depart
+  </select>
+
 </mapper>

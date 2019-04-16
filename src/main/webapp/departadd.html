@@ -12,7 +12,7 @@
 <body>
 
 	<div class="layui-container" style="margin-top: 5px">
-		<form class="layui-form" action="departadd.do" method="post">
+		<form class="layui-form" onsubmit="return false" method="post">
 			<div class="layui-form-item">
 				<label class="layui-form-label">部门名称</label>
 				<div class="layui-input-block">
@@ -28,7 +28,7 @@
 			</div>
 			
 			<div class="layui-form-item">
-				<input class="layui-btn" style="margin-left: 10%" type="submit" value="确认新增">
+				<button class="layui-btn" lay-submit="" lay-filter="demo1">确认新增</button>
 			</div>
 		</form>
 	</div>
@@ -36,32 +36,67 @@
 
 	<script src="media/layui/layui.js"></script>
 	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+	<script src="media/js/jquery.min.js"></script>
+	<!--<script>-->
+		<!--layui-->
+				<!--.use(-->
+						<!--[ 'form', 'laydate' ],-->
+						<!--function() {-->
+							<!--var form = layui.form, layer = layui.layer, laydate = layui.laydate;-->
+
+							<!--//日期-->
+							<!--laydate.render({-->
+								<!--elem : '#date'-->
+							<!--});-->
+							<!---->
+
+							<!--//自定义验证规则-->
+							<!--form.verify({-->
+								<!--title : function(value) {-->
+									<!--if (value.length < 5) {-->
+										<!--return '标题至少得5个字符啊';-->
+									<!--}-->
+								<!--},-->
+								<!--pass : [ /(.+){6,12}$/, '密码必须6到12位' ],-->
+								<!--content : function(value) {-->
+									<!--layedit.sync(editIndex);-->
+								<!--}-->
+							<!--});-->
+		<!--});-->
+	<!--</script>-->
+
+
 	<script>
-		layui
-				.use(
-						[ 'form', 'laydate' ],
-						function() {
-							var form = layui.form, layer = layui.layer, laydate = layui.laydate;
+        var form;
+        layui.use([ 'form', 'laydate' ],
+            function() {
+                form = layui.form, layer = layui.layer, laydate = layui.laydate;
+                //日期
+                laydate.render({
+                    elem : '#date'
+                });
+                //initData();
 
-							//日期
-							laydate.render({
-								elem : '#date'
-							});
-							
+                form.on('submit(demo1)', function(data){
+                    // 发送ajax请求
+                    $.ajax({
+                        type:"get",
+                        url:"/oa/TDpart/addTDpart.do",
+                        data:$("form").serialize(),
+                        dataType:"json",
+                        success:function(data){
+                            if(data.code == 1) {
+                                var t = parent.layui.table;// 上面写法也可以用
+                                /* t.reload('test');// 重新加载页面*/
+                                window.location.href = "departadd.html";
+                            }
+                        }
 
-							//自定义验证规则
-							form.verify({
-								title : function(value) {
-									if (value.length < 5) {
-										return '标题至少得5个字符啊';
-									}
-								},
-								pass : [ /(.+){6,12}$/, '密码必须6到12位' ],
-								content : function(value) {
-									layedit.sync(editIndex);
-								}
-							});
-		});
+                    })
+                    // 阻止默认的提交
+                    return false;
+                });
+            });
 	</script>
 </body>
 </html>
