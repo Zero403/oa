@@ -63,27 +63,31 @@ function showData(obj) {
 			<div class="layui-form-item">
 				<label class="layui-form-label">成立日期</label>
 				<div class="layui-input-block">
-				 <input type="text" readonly="readonly" id="f3" autocomplete="off" class="layui-input">
+				 <input type="text" name="createdate" readonly="readonly" id="f3" autocomplete="off" class="layui-input">
+					<!---->
 				</div>
 			</div>
+
 			<div class="layui-form-item">
 				<label class="layui-form-label">学科周期</label>
 				<div class="layui-input-block">
-					<input type="text" name="week" id="f4" lay-verify="name" autocomplete="off"
+					<input type="text" name="week" id="f4"  lay-verify="name" autocomplete="off"
 						placeholder="请输入周期" class="layui-input">
 				</div>
 			</div>
+
 			<div class="layui-form-item">
 				<label class="layui-form-label">学科类型</label>
 				<div class="layui-input-block">
-					<input type="text" name="location" id="f5" lay-verify="name" autocomplete="off"
-						class="layui-input">
+					<input type="text" name="type" id="f5" lay-verify="name" autocomplete="off"
+						   placeholder="请输入类型" class="layui-input">
 				</div>
 			</div>
 			
 		
 			<div class="layui-form-item">
 				<input class="layui-btn"  style="margin-left: 10%"  type="submit" value="确认修改">
+
 			</div>
 		</form>
 	</div>
@@ -93,6 +97,10 @@ function showData(obj) {
 		layui.use([ 'form', 'laydate' ],
 						function() {
 							var form = layui.form, layer = layui.layer, laydate = layui.laydate;
+//                            location.href="courselist.html";
+
+
+
 
 		});
 	</script>

@@ -5,6 +5,7 @@ import com.qianfeng.entity.TDdress;
 public interface TDdressMapper {
     int deleteByPrimaryKey(Integer id);
 
+    //添加新的部门信息，时间
     int insert(TDdress record);
 
     int insertSelective(TDdress record);

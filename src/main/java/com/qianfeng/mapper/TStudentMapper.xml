@@ -207,4 +207,11 @@
       photo = #{photo,jdbcType=VARCHAR}
     where no = #{no,jdbcType=VARCHAR}
   </update>
+
+  <select id="findAll" resultType="com.qianfeng.vo.VStu">
+
+   select s.no,s.name,c.name as gname,s.sex,s.phone,s.email,s.school,
+   s.education,s.birthday,s.createdate from  t_student s left join t_grade c on s.gid = c.id
+
+  </select>
 </mapper>

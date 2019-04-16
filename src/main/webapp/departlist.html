@@ -14,7 +14,7 @@
 	<div class="layui-container">
 		<table id="tbdata" lay-filter="tbop"></table>
 		<script type="text/html" id="barop">
-    		<a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+    		<a class="layui-btn layui-btn-mini" lay-event="edit" href="departupdate.html">编辑</a>
     		<a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
 		</script>
 	</div>
@@ -27,12 +27,12 @@
 		  //第一个实例
 		  table.render({
 		    elem: '#tbdata'
-		    ,url: 'departpage.do' //数据接口
+		    ,url: 'TDpart/list.do' //数据接口
 		    ,page: true //开启分页
 		    ,cols: [[ //表头
 		      {field: 'id', title: '序号', sort: true, fixed: 'left'}
 		      ,{field: 'name', title: '部门名称'}
-		      ,{field: 'dcount', title: '部门人数', sort: true}
+		     /* ,{field: 'dcount', title: '部门人数', sort: true}*/
 		      ,{field: 'createtime', title: '成立日期'}
 		      ,{field:'right', title: '操作',toolbar:"#barop"}
 		    ]]
@@ -43,8 +43,8 @@
 		        if(obj.event === 'del'){
 		            layer.confirm('是否确认删除部门?', function(index){
 		                $.ajax({
-		                    url: "departdelete.do",
-		                    type: "POST",
+		                    url: "/oa/TDpart/delete.do",
+		                    type: "post",
 		                    data:"id="+data.id,
 		                    success: function(data){
 		                        if(data.code==1000){
@@ -58,6 +58,9 @@
 		                });
 		            });
 		        } else if(obj.event === 'edit'){//编辑 修改
+					//get传递参数有中文，必须编码
+					//JSON.stringify 将对象转换为字符串
+					console.log(JSon.stringify(data))
 		           location.href="departupdate.html?d="+ encodeURI(JSON.stringify(data));
 		        }
 		});

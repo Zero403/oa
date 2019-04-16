@@ -8,11 +8,11 @@ public interface CourseService {
 
     public void addCourse(TCourse tCourse);
 
-    public List<TCourse> findAllCourse();
+    public List<TCourse> findAllCourse(int page, int limit);
 
     public void deleteCouById(Integer id);
 
-    public TCourse findCourse(Integer id);
+    public TCourse findCourseByid(Integer id);
 
     public void updateCou(TCourse tCourse);
 }
