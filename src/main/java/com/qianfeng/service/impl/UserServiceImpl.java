@@ -1,6 +1,8 @@
 package com.qianfeng.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.qianfeng.dao.TUserMapper;
+import com.qianfeng.dao.TUserroleMapper;
 import com.qianfeng.entity.TUser;
 import com.qianfeng.service.UserService;
 import com.qianfeng.vo.VUser;
@@ -18,9 +20,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private TUserMapper tUserMapper;
+    @Autowired
+    private TUserroleMapper tUserroleMapper;
 
     @Override
     public TUser login(String no, String password) {
+
 
         UsernamePasswordToken token = new UsernamePasswordToken(no, password);
 
@@ -33,14 +38,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<VUser> findUserRole(int page, int limit) {
+    public List<VUser> findUserRole(String no, int flag) {
 
-
-        return tUserMapper.findAllUserWithRole(page, limit);
+        List<VUser> list = tUserMapper.findAllUserWithRole(no, flag);
+        return list;
     }
 
     @Override
     public void delUser(int id) {
         tUserMapper.deleteByPrimaryKey(id);
+        tUserMapper.delUserFromUserRole(id);
     }
+
+    @Override
+    public void updateUserRole(int uid, int[] rids) {
+        tUserroleMapper.deleteByUserId(uid);
+        if (null != rids){
+            tUserroleMapper.insertUserRole(uid, rids);
+        }
+
+    }
+
+
 }

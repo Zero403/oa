@@ -39,5 +39,10 @@ public interface TUserMapper {
     String findPwdByName(String name);
 
 
-    List<VUser> findAllUserWithRole(@Param("page") int page, @Param("limit") int limit);
+    List<VUser> findAllUserWithRole(@Param("no") String no, @Param("flag") int flag);
+
+    void updateUserRole(int id, int[] rids);
+
+    @Delete("DELETE FROM t_userrole WHERE uid = #{uid}")
+    void delUserFromUserRole(int uid);
 }

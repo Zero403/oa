@@ -10,8 +10,10 @@ public interface UserService {
     public TUser login(String no, String password);
 
 
-    public List<VUser> findUserRole(int page, int limit);
+    public List<VUser> findUserRole(String no, int flag);
 
     public void delUser(int id);
+
+    public void updateUserRole(int uid, int[] rid);
 
 }

@@ -46,9 +46,11 @@ public class LoginController {
     }
 
     @RequestMapping("/userall.do")
-    public JsonBean roleAll(int page, int limit){
-
-        List<VUser> list = userService.findUserRole(page - 1, limit);
+    public JsonBean roleAll(String no, Integer flag){
+        if (null == flag){
+            flag = 1;
+        }
+        List<VUser> list = userService.findUserRole(no, flag);
         return JsonUtils.createJsonBean(0,list.size(), list);
     }
 
@@ -56,5 +58,12 @@ public class LoginController {
     public JsonBean delUser(int id){
         userService.delUser(id);
         return JsonUtils.createJsonBean(1000,1,null);
+    }
+
+    @RequestMapping("/userroleedit.do")
+    public JsonBean editUserRole(int id, int[] rids){
+
+        userService.updateUserRole(id, rids);
+        return JsonUtils.createJsonBean(1000,1, null);
     }
 }
