@@ -48,15 +48,15 @@ public class StudentController {
     }
 
 
-    @RequestMapping("staffall.do")
-    public JsonBean findAll() {
-        List<TSchedule> list = studentService.findName();
-        return JsonUtils.createJsonBean(0, list.size(), list);
-    }
-
-    @RequestMapping("gradeall.do")
-    public JsonBean find() {
-        List<TGrade> list = studentService.findAll();
-        return JsonUtils.createJsonBean(0, list.size(), list);
-    }
+//    @RequestMapping("staffall.do")
+//    public JsonBean findAll() {
+//        List<TSchedule> list = studentService.findName();
+//        return JsonUtils.createJsonBean(0, list.size(), list);
+//    }
+//
+//    @RequestMapping("gradeall.do")
+//    public JsonBean find() {
+//        List<TGrade> list = studentService.findAll();
+//        return JsonUtils.createJsonBean(0, list.size(), list);
+//    }
 }
