@@ -19,15 +19,14 @@
         }
     </style>
 </head>
-
 <body>
+<div id = 'holebody'>
 <div class="layui-layout layui-layout-admin kit-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">
             <img src="media/images/qf_logo.png" style="margin-right: 10px" /><span
                 style="font-size: 22px">滴答办公系统</span>
         </div>
-
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item kit-side-fold" lay-unselect >
@@ -53,7 +52,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="media/images/qf_logo.png" class="layui-nav-img">
-                    Feri
+                    {{user.no}}
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:showTab(1001,'user.html','我的信息');">我的信息</a></dd>
@@ -64,12 +63,18 @@
             <li class="layui-nav-item"><a href="userloginout.do">注销</a></li>
         </ul>
     </div>
-
-    <div class="layui-side layui-bg-black ">
+    <div class="layui-side layui-bg-black " id="left">
         <div class="layui-side-scroll">
 
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-shrink="all" id="lm">
+
+                <li class="layui-nav-item layui-nav-itemed" v-for="items in menu">
+                    <a href="javascript:;">{{items.pTitle}}</a>
+                    <dl class="layui-nav-child" v-for="item in items.list">
+                        <dd><a href="#" @click="javascript:showTab(item.id, item.aurl, item.title)">{{item.title}}</a></dd>
+                    </dl>
+                </li>
 
             </ul>
         </div>
@@ -81,7 +86,6 @@
             <div class="layui-tab-content" style="width: 99%;height: 98%"></div>
         </div>
     </div>
-
     <div class="layui-footer">
         <p>
             Copyright 2011-2018 <a href="http://www.1000phone.com/"
@@ -91,8 +95,11 @@
     </div>
 </div>
 
+</div>
 <script src="media/js/jquery.min.js"></script>
 <script src="media/layui/layui.js"></script>
+<script src="media/js/vue.min.js"></script>
+<script src="media/js/axios.js"></script>
 <script>
     //JavaScript代码区域
     var element;
@@ -135,6 +142,39 @@
         tid=id;
     }
 
+    var vue = new Vue({
+        el:"#holebody",
+        data:{
+            menu:[],
+            user:""
+        },
+        methods:{
+
+            loadMenu(){
+                var _this = this
+                var menu = axios.post("authority/menu.do").then(function (value) {
+                    var info = value.data;
+                    if (info.code == 1){}
+                    _this.menu = info.data;
+                })
+            },
+            loadUser(){
+                var _this = this
+                var user = axios.post("user/currentUser.do").then(function (value) {
+                    var data = value.data;
+                    if (data.code == 1){
+                        _this.user = data.data;
+                    }
+                })
+            }
+
+        },
+
+        mounted(){
+            this.loadMenu();
+            this.loadUser()
+        }
+    })
 </script>
 </body>
 

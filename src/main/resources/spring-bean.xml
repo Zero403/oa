@@ -155,7 +155,11 @@
 		<!-- Shiro连接约束配置,即过滤链的定义 -->
 		<property name="filterChainDefinitions">
 			<value>
-				/** = anon
+				<!--/login.html = anon
+				/userloginout.do = logout
+				/*.html = user-->
+
+
 				<!--  一般设置和认证相关的配置
 				 	和权限相关的一般使用注解
 				/login.jsp = anon
@@ -165,7 +169,7 @@
 				/test1.do = perms["user:list"]
 				/test2.do = perms["aaaa"]
 				 配置退出的操作
-				/logout.do = logout
+
 				  访问其他没有匹配上的资源时，都经过身份认证
 				/** = authc
 				/** = user     如果涉及rememberMe功能，需要使用user -->

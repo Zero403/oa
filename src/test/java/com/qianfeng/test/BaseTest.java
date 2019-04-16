@@ -2,7 +2,9 @@ package com.qianfeng.test;
 
 import com.qianfeng.dao.TAuthorityMapper;
 import com.qianfeng.dao.TUserMapper;
+import com.qianfeng.entity.TAuthority;
 import com.qianfeng.vo.VMenu;
+import com.qianfeng.vo.VUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,12 +18,13 @@ import java.util.List;
 public class BaseTest {
 
     @Resource
-    private TAuthorityMapper dao;
+    private TUserMapper dao;
 
 
     @Test
     public void test1(){
-        VMenu list = dao.findMenuByUserId(2);
+        List<VUser> list = dao.findAllUserWithRole(0, 10);
+
         System.out.println(list);
     }
 }
