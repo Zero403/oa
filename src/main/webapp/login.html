@@ -18,11 +18,12 @@
 <link rel="stylesheet" type="text/css" href="media/css/verify.css">
 <script type="text/javascript" src="media/js/jquery.min.js"></script>
 
+
 </head>
 <body class="layui-bg-black">
 	<div class="layui-canvs"></div>
 	<div class="layui-layout layui-layout-login">
-		<form action="login.do" method="post" onsubmit="return false">
+		<form action="#" method="post" onsubmit="return false">
 			<h1>
 				<strong>滴答办公系统登录</strong> <em>Tick-tock Office System</em>
 			</h1>
@@ -50,8 +51,11 @@
 	</div>
 	<script type="text/javascript" src="media/js/login.js"></script>
 	<script type="application/javascript" src="media/js/verify.min.js"></script>
+
 	<script type="text/javascript">
+
 		$(function() {
+
 			//滑动验证码
 			$('#mpanel4').pointsVerify({
 				defaultNum : 6, //默认的文字数量
@@ -77,9 +81,13 @@
 			});
 		});
 
+
+
 		$("form").submit(function(){
+
+
 			$.ajax({
-				url:"login.do",
+				url:"user/login.do",
 				type:"post",
 				data:$("form").serialize(),
 				dataType:"json",
@@ -93,5 +101,6 @@
 			})
 		})
 	</script>
+
 </body>
 </html>

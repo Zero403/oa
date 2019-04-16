@@ -19,7 +19,7 @@ public class CommonException {
 	public JsonBean commonException(Exception e){
 		
 
-		return JsonUtils.createJsonBean(0, 1,e.getMessage());
+		return JsonUtils.createJsonBean(0, 0,e.getMessage());
 
 	}
 }

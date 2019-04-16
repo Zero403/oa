@@ -19,7 +19,7 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_user
+    update t_user set flag = 2
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.qianfeng.entity.TUser">
@@ -103,4 +103,18 @@
       headphoto = #{headphoto,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <resultMap id="UserRoles" type="com.qianfeng.vo.VUser">
+    <id property="id" column="id"></id>
+    <result property="no" column="no"></result>
+    <result property="name" column="name"></result>
+    <result property="flag" column="flag"></result>
+    <collection property="role" javaType="java.util.ArrayList" ofType="string">
+      <result column="role"></result>
+    </collection>
+  </resultMap>
+  <select id="findAllUserWithRole" parameterType="map" resultMap="UserRoles">
+    SELECT u.id, u.no, u.`name`, u.flag, r.info role FROM t_user u INNER JOIN t_userrole ur ON u.id = ur.uid INNER JOIN t_role r on r.id = ur.rid limit #{page}, #{limit}
+  </select>
 </mapper>

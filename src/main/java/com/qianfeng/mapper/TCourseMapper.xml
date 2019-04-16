@@ -30,6 +30,7 @@
       #{week,jdbcType=INTEGER}, #{createdate,jdbcType=DATE}, #{type,jdbcType=INTEGER}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.qianfeng.entity.TCourse">
     insert into t_course
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -111,6 +112,11 @@
   <select id="findByName" parameterType="java.lang.String" resultType="com.qianfeng.entity.TCourse">
 
     select * from t_course where name=#{name}
+
+  </select>
+  <select id="findById" parameterType="java.lang.Integer" resultType="com.qianfeng.entity.TCourse">
+
+    select * from t_course where id=#{id}
 
   </select>
 </mapper>

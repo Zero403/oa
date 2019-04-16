@@ -12,7 +12,7 @@ public interface CourseService {
 
     public void deleteCouById(Integer id);
 
-    public TCourse findCourse(Integer id);
+    public TCourse findCourseByid(Integer id);
 
     public void updateCou(TCourse tCourse);
 }
