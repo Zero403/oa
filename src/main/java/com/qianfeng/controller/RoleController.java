@@ -1,9 +1,11 @@
 package com.qianfeng.controller;
 
 import com.qianfeng.common.JsonBean;
+import com.qianfeng.entity.TAuthority;
 import com.qianfeng.entity.TRole;
 import com.qianfeng.service.RoleService;
 import com.qianfeng.utils.JsonUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +23,12 @@ public class RoleController {
     public JsonBean findAllRoles(){
 
         List<TRole> list = service.findAllRole();
+        return JsonUtils.createJsonBean(0, list.size(), list);
+    }
+
+    @RequestMapping("/authority.do")
+    public JsonBean findAuthorityByRoleId(int id){
+        List<TAuthority> list = service.findAuthorityByRoleId(id);
         return JsonUtils.createJsonBean(0, list.size(), list);
     }
 }

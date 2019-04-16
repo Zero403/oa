@@ -140,7 +140,7 @@
     //修改
     function changeRole() {
         $.ajax({
-            url: "role/userroleedit.do",
+            url: "userroleedit.do",
             data: $("#fm1").serialize(),
             success: function (obj) {
                 if (obj.code == 1000) {
@@ -194,13 +194,13 @@
 </body>
 <div style="display: none;margin-top: 10px;width: 480px" id="dvlay">
     <form id="fm1" class="layui-form layui-form-pane" >
-        <div class="layui-form-item" pane >
+        <div class="layui-form-item">
             <label class="layui-form-label">工号：</label>
             <div class="layui-input-inline">
                 <input id="uid" name="id" readonly class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item" pane>
+        <div class="layui-form-item">
             <label class="layui-form-label">角色：</label>
             <div class="layui-input-inline" id="dv1">
 
