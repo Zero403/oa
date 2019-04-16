@@ -18,13 +18,14 @@ public class CourseServiceimpl implements CourseService{
 
     @Override
     public void addCourse(TCourse tCourse) {
-        TCourse tCourse1 = tCourseMapper.findByName(tCourse.getName());
+        TCourse course = tCourseMapper.findByName(tCourse.getName());
 
-        if(tCourse1 != null) {
+        if(course != null) {
             throw  new RuntimeException("存在相同课程，不能添加");
 
         }
-        tCourseMapper.insert(tCourse);
+        tCourseMapper.insertSelective(tCourse);
+
 
     }
 
@@ -42,17 +43,26 @@ public class CourseServiceimpl implements CourseService{
 
     @Override
     public void deleteCouById(Integer id) {
+        if (id == null) {
+            throw new RuntimeException("该课程不存在");
+        }
+        tCourseMapper.deleteByPrimaryKey(id);
 
     }
 
     @Override
-    public TCourse findCourse(Integer id) {
+    public TCourse findCourseByid(Integer id) {
 
-        return null;
+
+        return tCourseMapper.findById(id);
     }
 
     @Override
     public void updateCou(TCourse tCourse) {
+        if (tCourse == null) {
+            throw new RuntimeException("该课程不存在");
+        }
+        tCourseMapper.updateByPrimaryKey(tCourse);
 
     }
 }

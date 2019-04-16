@@ -1,5 +1,7 @@
 package com.qianfeng.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class TCourse {
@@ -10,7 +12,7 @@ public class TCourse {
     private Integer flag;
 
     private Integer week;
-
+@DateTimeFormat(pattern = "YYYY-MM-dd")
     private Date createdate;
 
     private Integer type;

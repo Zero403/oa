@@ -9,6 +9,7 @@ public interface TCourseMapper {
 
     int insert(TCourse record);
 
+
     int insertSelective(TCourse record);
 
     TCourse selectByPrimaryKey(Integer id);
@@ -20,5 +21,7 @@ public interface TCourseMapper {
     public  TCourse  findByName(String name);
 
     public List<TCourse> findAll();
+
+    public TCourse findById(Integer id);
 
 }
