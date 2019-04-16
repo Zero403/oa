@@ -31,8 +31,8 @@ public class CourseController {
 
     @RequestMapping("/coursepage.do")
 
-    public Layui FindAll() {
-        List<TCourse> list = courseService.findAllCourse();
+    public Layui FindAll(int page, int limit) {
+        List<TCourse> list = courseService.findAllCourse(page - 1, limit);
 //        Map<String,Object> map = new HashMap<>();
 //        map.put("code", 0); // 0 表示成功
 //        map.put("msg", "");
@@ -46,7 +46,7 @@ public class CourseController {
 
         courseService.updateCou(course);
         response.sendRedirect(request.getContextPath() + "/courselist.html");
-    }
+}
 
     @RequestMapping("/coursedelete.do")
     public Map<String, Object> deleteById(int id) {
@@ -61,7 +61,7 @@ public class CourseController {
     @RequestMapping("/courseadd.do")
     public void CourseAdd(TCourse course, HttpServletRequest request, HttpServletResponse response) throws  Exception{
 
-       // course.setFlag(1);
+       course.setFlag(1);
 
         courseService.addCourse(course);
 
