@@ -24,12 +24,12 @@ public class StaffController {
     private StaffService staffService;
 
 
-    @RequestMapping("/addStaff.do")
+    @RequestMapping("/staffadd.do")
     public JsonBean addStaff(TStaff tStaff) {
         JsonBean bean = null;
         try {
             staffService.addStaff(tStaff);
-            bean = JsonUtils.createJsonBean(1000, 10, null);
+            bean = JsonUtils.createJsonBean(1, 10, null);
         } catch (Exception e) {
             bean = JsonUtils.createJsonBean(0, 10, e.getMessage());
         }
@@ -39,7 +39,7 @@ public class StaffController {
     @RequestMapping("/staffList.do")
     public Map<String, Object> courseList(Integer page) {
 
-        PageHelper.startPage(page, 5);
+        PageHelper.startPage(page, 10);
         Map<String, Object> map = new HashMap<>();
 
         try {
@@ -81,5 +81,7 @@ public class StaffController {
         bean = staffService.findAllDepart();
         return JsonUtils.createJsonBean(0,bean.size(),bean);
     }
+
+
 
 }

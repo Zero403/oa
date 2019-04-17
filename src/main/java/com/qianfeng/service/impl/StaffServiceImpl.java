@@ -1,5 +1,6 @@
 package com.qianfeng.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.qianfeng.dao.TStaffMapper;
 import com.qianfeng.entity.TDepart;
 import com.qianfeng.entity.TStaff;
@@ -58,4 +59,5 @@ public class StaffServiceImpl implements StaffService {
 
         return bean;
     }
+
 }

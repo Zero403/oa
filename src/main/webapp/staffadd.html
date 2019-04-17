@@ -9,6 +9,22 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="media/layui/css/layui.css" media="all">
 <script type="text/javascript" src="media/js/jquery.min.js"></script>
+
+	<script type="text/javascript">
+        //显示数据
+        function showData(obj) {
+            $("#f1").val(obj.name);
+            $("#cds").val(obj.did);
+            $("#f3").val(obj.sex);
+            $("#f4").val(obj.email);
+            $("#f5").val(obj.phone);
+            $("#f6").val(obj.qq);
+            $("#date").val(obj.createdate);
+            $("#p1").val(obj.photo);
+
+        }
+	</script>
+
 </head>
 <body>
 	<div class="layui-container" style="margin-top: 5px">
@@ -78,7 +94,7 @@
  			</div>
 			<div class="layui-form-item">
 				<!--<input class="layui-btn"  style="margin-left: 10%"  id="btn1" disabled="disabled" type="submit" value="确认新增">-->
-				<button class="layui-btn" lay-submit="" lay-filter="demo1">确认新增</button>
+				<button class="layui-btn" lay-submit="" lay-filter="upfile">确认新增</button>
 			</div>
 		</form>
 	</div>
@@ -98,15 +114,19 @@
                     //执行实例
                     var uploadInst = upload.render({
                         elem: '#upfile' //绑定元素
-                        ,url: 'addStaff.do' //上传接口
+                        ,url: 'staffadd.do' //上传接口
                         ,done: function(obj){
                             //上传完毕回调
                             console.log(obj);
                             if(obj.code==1){
-                                $("#p1").val(obj.msg);
+                                /*$("#p1").val(obj.msg);
                                 $("#img1")[0].src="/tickresource/"+obj.msg;
-                                $("#btn1").attr("disabled",false);
-                            }else{
+                                $("#btn1").attr("disabled",false);*/
+                                var t = parent.layui.table;//重新加载页面
+                                t.reload('text');
+								window.location.href = "staffadd.html"
+
+                            } else {
                                 $("#img1")[0].src="media/images/cw1.jpg";
                             }
 
@@ -137,25 +157,34 @@
                 });
         //初始化数据
         function initData() {
-            $.get("addStaff.do",null,function(arr){
+           /* $.get("findAllDept.do",null,function(arr){
                 for(i=0;i<arr.length;i++){
                     if (introno == arr[i].no) {
-                        $("#inos").append("<option value='"+arr[i].no+"' selected='selected'>"+arr[i].name+"</option>");
+                        $("#cds").append("<option value='"+arr[i].no+"' selected='selected'>"+arr[i].name+"</option>");
                     } else {
                         $("#inos").append("<option value='"+arr[i].no+"'>"+arr[i].name+"</option>");
                     }
 
                 }
                 form.render("select");
-            });
-            $.get("staffno.do",null,function(obj){
+            });*/
+
+                $.get("findAllDept.do",null,function(arrs){
+                    var arr = arrs.data;
+                    for(i=0;i<arr.length;i++){
+                        $("#cds").append("<option value='"+arr[i].id+"'>"+arr[i].name+"</option>");
+                    }
+                    form.render("select");
+                })
+
+        /*  $.get("list.do",null,function(obj){
                 if(obj.msg=='null'){
                     $("#no1").val("qf000001");
                 }else{
                     $("#no1").val(obj.msg+1);
                 }
 
-            })
+            })*/
         }
 	</script>
 </body>

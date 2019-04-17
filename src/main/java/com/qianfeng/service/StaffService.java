@@ -20,4 +20,6 @@ public interface StaffService {
 
     //增加部门信息
     public List<TDepart> findAllDepart();
+
+
 }

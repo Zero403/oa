@@ -9,6 +9,8 @@ import java.util.List;
 public interface TStaffMapper {
     int deleteByPrimaryKey(String no);
 
+
+    //增加数据
     int insert(TStaff record);
 
     int insertSelective(TStaff record);
@@ -27,4 +29,6 @@ public interface TStaffMapper {
 
     @Select("SELECT * from t_depart ")
     public  List<TDepart> findAlldep();
+
+
 }

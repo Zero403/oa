@@ -28,11 +28,11 @@
   </delete>
   <insert id="insert" parameterType="com.qianfeng.entity.TStaff">
     insert into t_staff (no, name, did, 
-      flag, sex, email, qq, 
+      flag, sex, email, qq,
       phone, createdate, photo
       )
     values (#{no,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{did,jdbcType=INTEGER}, 
-      #{flag,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR},
       #{phone,jdbcType=VARCHAR}, #{createdate,jdbcType=DATE}, #{photo,jdbcType=VARCHAR}
       )
   </insert>
