@@ -1,5 +1,6 @@
 package com.qianfeng.service;
 
+import com.qianfeng.entity.TDepart;
 import com.qianfeng.entity.TStaff;
 
 import java.util.List;
@@ -16,4 +17,7 @@ public interface StaffService {
 
     //编辑
     public void updateStaff(TStaff staff);
+
+    //增加部门信息
+    public List<TDepart> findAllDepart();
 }

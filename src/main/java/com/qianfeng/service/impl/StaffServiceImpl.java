@@ -1,6 +1,7 @@
 package com.qianfeng.service.impl;
 
 import com.qianfeng.dao.TStaffMapper;
+import com.qianfeng.entity.TDepart;
 import com.qianfeng.entity.TStaff;
 import com.qianfeng.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ public class StaffServiceImpl implements StaffService {
 
     @Autowired
     private TStaffMapper tStaffMapper;
+
 
     @Override
     public void addStaff(TStaff tStaff) {
@@ -47,5 +49,13 @@ public class StaffServiceImpl implements StaffService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<TDepart> findAllDepart() {
+        List<TDepart> bean;
+            bean = tStaffMapper.findAlldep();
+
+        return bean;
     }
 }

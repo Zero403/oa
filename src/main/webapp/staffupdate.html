@@ -36,7 +36,7 @@
         //显示数据
         function showData(obj) {
             $("#f1").val(obj.name);
-            $("#cds").val(obj.dname);
+            $("#cds").val(obj.did);
             $("#f3").val(obj.sex);
             $("#f4").val(obj.email);
             $("#f5").val(obj.phone);
@@ -49,7 +49,7 @@
 </head>
 <body>
 <div class="layui-container">
-	<form class="layui-form" action="staffadd.do" method="post">
+	<form class="layui-form" action="staffUpdate.do" method="post">
 		<div class="layui-form-item">
 			<label class="layui-form-label">员工姓名</label>
 			<div class="layui-input-block">
@@ -132,17 +132,9 @@
                         //上传完毕回调
                         console.log(obj);
                         if(obj.code==1){
-
                             window.Location.href="stafflist.html"
-                            /*;
-                            $("#p1").val(obj.msg);
-                            $("#img1")[0].src="/tickresource/"+obj.msg;
-                            $("#btn1").attr("disabled",false)*/
                         }else{
-                            /* $("#img1")[0].src="media/images/cw1.jpg";*/
-
                         }
-
                     }
                     ,error: function(){
                         //请求异常回调
@@ -170,7 +162,8 @@
             });
     //初始化数据
     function initData() {
-        $.get("findAllDept.do",null,function(arr){
+        $.get("findAllDept.do",null,function(arrs){
+            var arr = arrs.data;
             for(i=0;i<arr.length;i++){
                 $("#cds").append("<option value='"+arr[i].id+"'>"+arr[i].name+"</option>");
             }

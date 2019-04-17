@@ -4,6 +4,7 @@ package com.qianfeng.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qianfeng.common.JsonBean;
+import com.qianfeng.entity.TDepart;
 import com.qianfeng.entity.TSchedule;
 import com.qianfeng.entity.TStaff;
 import com.qianfeng.service.StaffService;
@@ -72,6 +73,13 @@ public class StaffController {
             e.printStackTrace();
             return JsonUtils.createJsonBean(0, 8, e.getMessage());
         }
+    }
+
+    @RequestMapping("/findAllDept.do")
+    public JsonBean findAll() {
+        List<TDepart> bean;
+        bean = staffService.findAllDepart();
+        return JsonUtils.createJsonBean(0,bean.size(),bean);
     }
 
 }
