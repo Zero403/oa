@@ -156,14 +156,14 @@
 		<property name="filterChainDefinitions">
 			<value>
 				<!--/login.html = anon
+				/login.do = anon
 				/userloginout.do = logout
-				/*.html = user-->
+				/*.html = roles
+				/*.do = perms-->
 
 
 				<!--  一般设置和认证相关的配置
 				 	和权限相关的一般使用注解
-				/login.jsp = anon
-				/login.do = anon
 				/js/** = anon    静态资源匿名访问
 				/static/** = anon
 				/test1.do = perms["user:list"]

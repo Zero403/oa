@@ -115,6 +115,12 @@
     </collection>
   </resultMap>
   <select id="findAllUserWithRole" parameterType="map" resultMap="UserRoles">
-    SELECT u.id, u.no, u.`name`, u.flag, r.info role FROM t_user u INNER JOIN t_userrole ur ON u.id = ur.uid INNER JOIN t_role r on r.id = ur.rid limit #{page}, #{limit}
+    SELECT u.id, u.no, u.`name`, u.flag, r.info role FROM t_user u INNER JOIN t_userrole ur ON u.id = ur.uid INNER JOIN t_role r on r.id = ur.rid
+    <where>
+      <if test="no != null and no != ''">u.no like concat('%', #{no}, '%')</if> and
+      u.flag = #{flag}
+    </where>
+
   </select>
+
 </mapper>

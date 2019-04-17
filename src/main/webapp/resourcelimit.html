@@ -39,20 +39,20 @@
 		  //第一个实例
 		  table.render({
 		    elem: '#tbdata'
-		    ,url: 'authoritylist.do' //数据接口
+		    ,url: 'authority/authoritylist.do' //数据接口
 		    ,page: true //开启分页
 		    ,cols: [[ //表头
 		      {field: 'id', title: '序号', sort: true, fixed: 'left'}
 		      ,{field: 'title', title: '名称'}
 		      ,{field: 'aurl', title: '页面路径',templet: function (obj) {
-                          return obj.parentId==0?"":obj.aurl}
+                          return obj.parentid==0?"":obj.aurl}
 				  }
 		      ,{field: 'aicon', title: '图标', templet: function (obj) {
                           return "<span><i class=\"fa "+obj.aicon+"\"></i></span>";
                       }
 				  }
-		      ,{field: 'parentId', title: '级别', templet: function (obj) {
-					  return obj.parentId==0?"一级页面":"二级页面"}}
+		      ,{field: 'parentid', title: '级别', templet: function (obj) {
+					  return obj.parentid==0?"一级页面":"二级页面"}}
 		      ,{field:'right', title: '操作',toolbar:"#barop"}
 		    ]]
 		  });
@@ -62,7 +62,7 @@
 		        if(obj.event === 'del'){
 		            layer.confirm('是否确认删除权限?', function(index){
 		                $.ajax({
-		                    url: "coursedelete.do",
+		                    url: "authority/coursedelete.do",
 		                    type: "POST",
 		                    data:"id="+data.id,
 		                    success: function(data){
@@ -71,7 +71,7 @@
 		                            layer.close(index);
 		                            layer.msg("删除成功", {icon: 6});
 		                        }else{
-		                            layer.msg("删除失败", {icon: 5});
+		                            layer.msg(data.data, {icon: 5});
 		                        }
 		                    }
 		                });
@@ -92,13 +92,13 @@
             btn: ['新增', '取消'],
             yes: function(index, layero){
                 $.ajax({
-                    url: "authorityadd.do",
+                    url: "authority/authorityadd.do",
 					method:"post",
                     data: $("#fm1").serialize(),
                     success: function (obj) {
                         if (obj.code == 1000) {
                             layer.msg("新增权限成功");
-                            searchData();
+
                         } else {
                             layer.msg("新增权限失败");
                         }
@@ -111,7 +111,8 @@
     }
     function changePid(i) {
 		if(i==-1){
-            $.get("authorityroot.do",null,function (arr) {
+            $.get("authority/authorityroot.do",null,function (arrs) {
+            	var  arr = arrs.data;
 				for(i=0;i<arr.length;i++){
                     $("#spid").append("<option value=\""+arr[i].id+"\">"+arr[i].title+"</option>");
 				}
@@ -122,9 +123,6 @@
             $("#dvl1").css("display","none");
 		    $("#pid").val(i);
 		}
-    }
-    function setPid(obj) {
-        $("#pid").val(obj.value());
     }
 </script>
 </body>
@@ -155,11 +153,10 @@
 				<input type="radio" name="pid" value="-1" lay-filter="level"   title="二级" >
 			</div>
 		</div>
-		<input type="hidden" name="parentId" id="pid">
 		<div class="layui-form-item" id="dvl1" style="display: none" >
 			<label class="layui-form-label">上级路径：</label>
 			<div class="layui-input-inline">
-				<select onselect="setPid(this)" id="spid" >
+				<select name="parentid" id="spid" >
 
 				</select>
 

@@ -67,14 +67,7 @@
         tableIns = table.render({
             elem: '#tbdata'
             , url: 'role/roleall.do' //数据接口
-            ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-				layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
-				//,curr: 1 //设定初始在第 5 页
-				,groups: 3 //只显示 1 个连续页码
-				,first: false //不显示首页
-				,last: false //不显示尾页
-
-			}
+            ,page: false
             , cols: [[ //表头
                 {field: 'id', title: '序号', sort: true, fixed: 'left'}
                 , {field: 'name', title: '角色名称'}
@@ -88,7 +81,7 @@
             if (obj.event === 'del') {
                 layer.confirm('是否确认删除角色?', function (index) {
                     $.ajax({
-                        url: "userdel.do",
+                        url: "role/roledel.do",
                         type: "POST",
                         data: "id=" + data.id,
                         success: function (data) {
@@ -97,7 +90,7 @@
                                 layer.close(index);
                                 layer.msg("删除成功", {icon: 6});
                             } else {
-                                layer.msg("删除失败", {icon: 5});
+                                layer.msg("data.data", {icon: 5});
                             }
                         }
                     });
@@ -137,14 +130,15 @@
     function loadRoles(user) {
         console.log(user)
         $("#uid").val(user.id);
-        $.get("role/authority.do", null, function (arr) {
+        $.get("authority/allAuthority.do", null, function (arrs) {
+        	var  arr = arrs.data;
             $("#dv1").html("");
             console.log(user.rids);
             for (i = 0; i < arr.length; i++) {
-                if(user.rids.indexOf(arr[i].id)>-1){
-                    $("#dv1").append("<input type=\"checkbox\" name=\"rids\" value='" + arr[i].id + "' title=\"" + arr[i].info + "\" checked>");
+                if(user.authoritys.indexOf(arr[i].title)>-1){
+                    $("#dv1").append("<input type=\"checkbox\" name=\"authoritys\" value='" + arr[i].id + "' title=\"" + arr[i].title + "\" checked>");
                 }else{
-                    $("#dv1").append("<input type=\"checkbox\" name=\"rids\" value='" + arr[i].id + "' title=\"" + arr[i].info + "\">");
+                    $("#dv1").append("<input type=\"checkbox\" name=\"authoritys\" value='" + arr[i].id + "' title=\"" + arr[i].title + "\">");
                 }
             }
             form1.render();
@@ -156,7 +150,7 @@
                 btn: ['确认', '取消'],
                 yes: function(index, layero){
                     $.ajax({
-                        url: "userroleedit.do",
+                        url: "role/userroleedit.do",
                         data: $("#fm1").serialize(),
                         success: function (obj) {
                             if (obj.code == 1000) {

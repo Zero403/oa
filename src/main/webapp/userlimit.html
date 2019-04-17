@@ -70,14 +70,7 @@
 
             elem: '#tbdata'
             , url: 'user/userall.do' //数据接口
-            ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
-                //,curr: 1 //设定初始在第 5 页
-                ,groups: 3 //只显示 1 个连续页码
-                ,first: false //不显示首页
-                ,last: false //不显示尾页
-
-            }
+            ,page: false
             , cols: [[ //表头
                 {field: 'id', title: '序号', sort: true, fixed: 'left'}
                 , {field: 'no', title: '工号'}
@@ -140,7 +133,7 @@
     //修改
     function changeRole() {
         $.ajax({
-            url: "userroleedit.do",
+            url: "user/userroleedit.do",
             data: $("#fm1").serialize(),
             success: function (obj) {
                 if (obj.code == 1000) {
@@ -155,11 +148,12 @@
 
     function loadRoles(user) {
         $("#uid").val(user.id);
-        $.get("role/roleall.do", null, function (arr) {
+        $.get("role/roleall.do?page=1&limit=10", null, function (arrs) {
+            arr = arrs.data;
             $("#dv1").html("");
             for (i = 0; i < arr.length; i++) {
-                if(user.rids.indexOf(arr[i].id)>-1){
-                    $("#dv1").append("<input type=\"checkbox\" name=\"rids\" value='" + arr[i].id + "' title=\"" + arr[i].info + "\" checked>");
+                if(user.role.indexOf(arr[i].info)>-1){
+                    $("#dv1").append("<input type=\"checkbox\" name=\"rids\" value='" + arr[i].id + "' title=\"" + arr[i].info + "\" checked='checked'>");
                 }else{
                     $("#dv1").append("<input type=\"checkbox\" name=\"rids\" value='" + arr[i].id + "' title=\"" + arr[i].info + "\">");
                 }
@@ -173,7 +167,7 @@
                 btn: ['确认', '取消'],
                 yes: function(index, layero){
                     $.ajax({
-                        url: "role/userroleedit.do",
+                        url: "user/userroleedit.do",
                         data: $("#fm1").serialize(),
                         success: function (obj) {
                             if (obj.code == 1000) {
@@ -194,13 +188,13 @@
 </body>
 <div style="display: none;margin-top: 10px;width: 480px" id="dvlay">
     <form id="fm1" class="layui-form layui-form-pane" >
-        <div class="layui-form-item">
+        <div class="layui-form-item" pane>
             <label class="layui-form-label">工号：</label>
             <div class="layui-input-inline">
                 <input id="uid" name="id" readonly class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
+        <div class="layui-form-item" pane>
             <label class="layui-form-label">角色：</label>
             <div class="layui-input-inline" id="dv1">
 
