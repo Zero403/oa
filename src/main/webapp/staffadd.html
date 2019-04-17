@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="layui-container" style="margin-top: 5px">
-		<form class="layui-form" action="staffadd.do" method="post" >
+		<form class="layui-form" action="staffadd.do" method="post">
 			<div class="layui-form-item">
 				<label class="layui-form-label">员工工号</label>
 				<div class="layui-input-block">
@@ -31,7 +31,7 @@
             <label class="layui-form-label">所属部门</label>
 	            <div class="layui-input-block">
 	                <select name="did"  id="cds">
-	       				<option value="-1">--请选择部门--</option>
+	       				<option value="">--请选择部门--</option>
 	      			</select>
 	            </div>
             </div>
@@ -77,7 +77,8 @@
  				 </div>
  			</div>
 			<div class="layui-form-item">
-				<input class="layui-btn"  style="margin-left: 10%"  id="btn1" disabled="disabled" type="submit" value="确认新增">
+				<!--<input class="layui-btn"  style="margin-left: 10%"  id="btn1" disabled="disabled" type="submit" value="确认新增">-->
+				<button class="layui-btn" lay-submit="" lay-filter="demo1">确认新增</button>
 			</div>
 		</form>
 	</div>
@@ -86,71 +87,76 @@
 	<script src="media/layui/layui.js"></script>
 	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 	<script>
-	var form;
-		layui
-				.use(
-						[ 'form','upload', 'layedit', 'laydate' ],
-						function() {
-							form = layui.form, layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
-							var upload = layui.upload;
-							   
-							  //执行实例
-							  var uploadInst = upload.render({
-							    elem: '#upfile' //绑定元素
-							    ,url: 'photoupload.do' //上传接口
-							    ,done: function(obj){
-							      //上传完毕回调
-							      console.log(obj);
-							      if(obj.code==1000){
-							    	  $("#p1").val(obj.msg);
-								      $("#img1")[0].src="/tickresource/"+obj.msg;
-							      	  $("#btn1").attr("disabled",false);
-							      }else{
-							    	  $("#img1")[0].src="media/images/cw1.jpg";
-							      }
-							      
-							    }
-							    ,error: function(){
-							      //请求异常回调
-							    }
-							  });
-							//日期
-							laydate.render({
-								elem : '#date'
-							});
-							
+        var form;
+        layui
+            .use(
+                [ 'form','upload', 'layedit', 'laydate' ],
+                function() {
+                    form = layui.form, layer = layui.layer, layedit = layui.layedit, laydate = layui.laydate;
+                    var upload = layui.upload;
 
-							//自定义验证规则
-							form.verify({
-								title : function(value) {
-									if (value.length < 5) {
-										return '标题至少得5个字符啊';
-									}
-								},
-								pass : [ /(.+){6,12}$/, '密码必须6到12位' ],
-								content : function(value) {
-									layedit.sync(editIndex);
-								}
-							});
-					initData();
-		});
-		//初始化数据
-		function initData() {
-			$.get("departall.do",null,function(arr){
-				for(i=0;i<arr.length;i++){
-					$("#cds").append("<option value='"+arr[i].id+"'>"+arr[i].name+"</option>");
-				}
-				form.render("select");
-			});
-			$.get("staffno.do",null,function(obj){
-				if(obj.msg=='null'){
-					$("#no1").val("qf000001");
-				}else{
-					$("#no1").val(obj.msg+1);
-				}
-				
-			})
-		}
+                    //执行实例
+                    var uploadInst = upload.render({
+                        elem: '#upfile' //绑定元素
+                        ,url: 'addStaff.do' //上传接口
+                        ,done: function(obj){
+                            //上传完毕回调
+                            console.log(obj);
+                            if(obj.code==1){
+                                $("#p1").val(obj.msg);
+                                $("#img1")[0].src="/tickresource/"+obj.msg;
+                                $("#btn1").attr("disabled",false);
+                            }else{
+                                $("#img1")[0].src="media/images/cw1.jpg";
+                            }
+
+                        }
+                        ,error: function(){
+                            //请求异常回调
+                        }
+                    });
+                    //日期
+                    laydate.render({
+                        elem : '#date'
+                    });
+
+
+                    //自定义验证规则
+                    form.verify({
+                        title : function(value) {
+                            if (value.length < 5) {
+                                return '标题至少得5个字符啊';
+                            }
+                        },
+                        pass : [ /(.+){6,12}$/, '密码必须6到12位' ],
+                        content : function(value) {
+                            layedit.sync(editIndex);
+                        }
+                    });
+                    initData();
+                });
+        //初始化数据
+        function initData() {
+            $.get("addStaff.do",null,function(arr){
+                for(i=0;i<arr.length;i++){
+                    if (introno == arr[i].no) {
+                        $("#inos").append("<option value='"+arr[i].no+"' selected='selected'>"+arr[i].name+"</option>");
+                    } else {
+                        $("#inos").append("<option value='"+arr[i].no+"'>"+arr[i].name+"</option>");
+                    }
+
+                }
+                form.render("select");
+            });
+            $.get("staffno.do",null,function(obj){
+                if(obj.msg=='null'){
+                    $("#no1").val("qf000001");
+                }else{
+                    $("#no1").val(obj.msg+1);
+                }
+
+            })
+        }
 	</script>
 </body>
 </html>

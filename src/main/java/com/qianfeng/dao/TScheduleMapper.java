@@ -3,13 +3,13 @@ package com.qianfeng.dao;
 import com.qianfeng.entity.TSchedule;
 
 public interface TScheduleMapper {
-    int deleteByPrimaryKey(String no);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(TSchedule record);
 
     int insertSelective(TSchedule record);
 
-    TSchedule selectByPrimaryKey(String no);
+    TSchedule selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(TSchedule record);
 

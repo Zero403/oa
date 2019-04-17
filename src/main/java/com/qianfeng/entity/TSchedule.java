@@ -1,53 +1,44 @@
 package com.qianfeng.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 public class TSchedule {
-    private String no;
+    private Integer id;
 
-    private String name;
+    private Integer gid;
 
-    private Integer did;
+    private String sno;
 
     private Integer flag;
 
-    private String sex;
+    private Integer type;
 
-    private String email;
-
-    private String qq;
-
-    private String phone;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdate;
 
-    private String photo;
+    private Date enddate;
 
-    public String getNo() {
-        return no;
+    public Integer getId() {
+        return id;
     }
 
-    public void setNo(String no) {
-        this.no = no == null ? null : no.trim();
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getGid() {
+        return gid;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setGid(Integer gid) {
+        this.gid = gid;
     }
 
-    public Integer getDid() {
-        return did;
+    public String getSno() {
+        return sno;
     }
 
-    public void setDid(Integer did) {
-        this.did = did;
+    public void setSno(String sno) {
+        this.sno = sno == null ? null : sno.trim();
     }
 
     public Integer getFlag() {
@@ -58,36 +49,12 @@ public class TSchedule {
         this.flag = flag;
     }
 
-    public String getSex() {
-        return sex;
+    public Integer getType() {
+        return type;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex == null ? null : sex.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    public String getQq() {
-        return qq;
-    }
-
-    public void setQq(String qq) {
-        this.qq = qq == null ? null : qq.trim();
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Date getCreatedate() {
@@ -98,11 +65,11 @@ public class TSchedule {
         this.createdate = createdate;
     }
 
-    public String getPhoto() {
-        return photo;
+    public Date getEnddate() {
+        return enddate;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo == null ? null : photo.trim();
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
     }
 }
