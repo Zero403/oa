@@ -27,7 +27,7 @@
 		  //第一个实例
 		  table.render({
 		    elem: '#tbdata'
-		    ,url: 'processlist.do' //数据接口
+		    ,url: 'check/processlist.do' //数据接口
 		    ,page: true //开启分页
 		    ,cols: [[ //表头
 		      {field: 'id', title: '序号', sort: true, fixed: 'left'}
@@ -56,7 +56,7 @@
 		        if(obj.event === 'n'){
 		            layer.confirm('是否取消?', function(index){
 		                $.ajax({
-		                    url: "processdel.do",
+		                    url: "check/processdel.do",
 		                    type: "POST",
 		                    data:"id="+data.id+"&pid="+data.pid,
 		                    success: function(data){

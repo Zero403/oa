@@ -158,13 +158,15 @@
 		});
 		//初始化数据
 		function initData() {
-			$.get("gradeall.do",null,function(arr){
+			$.get("gradeall.do",null,function(arrs){
+                var arr = arrs.data;
 				for(i=0;i<arr.length;i++){
 					$("#cds").append("<option value='"+arr[i].id+"'>"+arr[i].name+"</option>");
 				}
 				form.render("select");
 			});
-			$.get("staffall.do",null,function(arr){
+			$.get("staffall.do",null,function(arrs){
+			     var arr = arrs.data;
 				for(i=0;i<arr.length;i++){
 					$("#inos").append("<option value='"+arr[i].no+"'>"+arr[i].name+"</option>");
 				}

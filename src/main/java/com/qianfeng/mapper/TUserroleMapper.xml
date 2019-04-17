@@ -33,4 +33,16 @@
       </if>
     </trim>
   </insert>
+
+
+  <delete id="deleteByUserId" parameterType="int">
+    DELETE FROM t_userrole WHERE uid = #{uid}
+  </delete>
+
+  <insert id="insertUserRole" parameterType="map">
+    INSERT INTO t_userrole VALUES
+    <foreach collection="rids" item="rid" separator=",">
+      (#{uid}, #{rid})
+    </foreach>
+  </insert>
 </mapper>

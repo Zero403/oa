@@ -79,4 +79,23 @@
       parentId = #{parentid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <resultMap id="roleauthority" type="com.qianfeng.vo.VRole">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="parentId" jdbcType="INTEGER" property="parentid" />
+    <collection property="authoritys" javaType="java.util.ArrayList" ofType="string">
+      <result column="title"></result>
+    </collection>
+  </resultMap>
+  <select id="findAllRole" parameterType="map" resultMap="roleauthority">
+    SELECT a.title, r.* FROM t_roleauthority ar INNER JOIN t_authority a on ar.aid = a.id INNER JOIN t_role r on ar.rid = r.id
+    <where>
+      <if test="no != null and no != ''">r.name like concat('%', #{no}, '%')</if>
+    </where>
+  </select>
+
+
 </mapper>

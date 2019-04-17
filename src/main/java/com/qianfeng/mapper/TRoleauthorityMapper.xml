@@ -33,4 +33,11 @@
       </if>
     </trim>
   </insert>
+
+  <insert id="insertByRidAid" parameterType="map">
+    INSERT INTO t_roleauthority VALUES
+    <foreach collection="aids" item="aid" separator=",">
+      (#{rid}, #{aid})
+    </foreach>
+  </insert>
 </mapper>

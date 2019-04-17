@@ -30,10 +30,10 @@ public class CourseServiceimpl implements CourseService{
     }
 
     @Override
-    public List<TCourse> findAllCourse() {
+    public List<TCourse> findAllCourse(int page, int limit) {
         List<TCourse> list = null;
         try {
-            list = tCourseMapper.findAll();
+            list = tCourseMapper.findAll(page ,limit);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("查询所有课程异常");
@@ -62,7 +62,7 @@ public class CourseServiceimpl implements CourseService{
         if (tCourse == null) {
             throw new RuntimeException("该课程不存在");
         }
-        tCourseMapper.updateByPrimaryKey(tCourse);
+        tCourseMapper.updateByPrimaryKeySelective(tCourse);
 
     }
 }
