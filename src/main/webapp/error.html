@@ -5,6 +5,11 @@
     <title>错误呀</title>
 </head>
 <body>
-<h1>亲，你暂无权限</h1>
+<button onclick="returnLogin()"><h3>亲，你暂无权限</h3></button>
+<script>
+    function returnLogin() {
+        window.parent.location.href = "login.html";
+    }
+</script>
 </body>
 </html>

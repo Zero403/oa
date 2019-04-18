@@ -30,6 +30,7 @@ public class GreadeController {
 
 
 
+
     @RequestMapping("/gradedelete.do")
     public JsonBean delGrade(Integer id){
         gradeService.deleteGrade(id);

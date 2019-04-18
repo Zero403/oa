@@ -21,7 +21,7 @@ public interface TUserMapper {
 
     int updateByPrimaryKey(TUser record);
 
-    @Select("SELECT r.info from t_user u INNER JOIN t_userrole ur ON u.id = ur.uid INNER JOIN t_role r ON r.id = ur.rid WHERE u.id = \n" +
+    @Select("SELECT r.name from t_user u INNER JOIN t_userrole ur ON u.id = ur.uid INNER JOIN t_role r ON r.id = ur.rid WHERE u.id = \n" +
             "(SELECT id from t_user where no = #{name})")
     List<String> findRoleByName(String name);
 

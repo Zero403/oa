@@ -158,9 +158,11 @@
 				/login.html = anon
 				/login.do = anon
 				/userloginout.do = logout
-				/*.html = user
-				/*.do = user
-
+				<!--/*.html = user
+				/*.do = user-->
+				/index.html = roles[root]
+				/userlist.html = perms["用户角色"]
+				/grade/** = perms["123"]
 				<!--  一般设置和认证相关的配置
 				 	和权限相关的一般使用注解
 				/js/** = anon    静态资源匿名访问

@@ -23,8 +23,5 @@ public class BaseTest {
 
     @Test
     public void test1(){
-        List<VUser> list = dao.findAllUserWithRole(0, 10);
-
-        System.out.println(list);
     }
 }
