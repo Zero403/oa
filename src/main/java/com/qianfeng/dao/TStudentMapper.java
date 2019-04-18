@@ -2,6 +2,7 @@ package com.qianfeng.dao;
 
 import com.qianfeng.entity.TGrade;
 import com.qianfeng.entity.TSchedule;
+import com.qianfeng.entity.TStaff;
 import com.qianfeng.entity.TStudent;
 import com.qianfeng.vo.VStu;
 import org.apache.ibatis.annotations.Param;
@@ -28,8 +29,8 @@ public interface TStudentMapper {
 
     public void addBatch(List<VStu> list);
 
-    @Select("select * from t_staff ")
-    List<TSchedule> findAlls();
+    @Select("select * from t_staff")
+    List<TStaff> findAllSta();
 
     @Select("select * from t_grade")
     List<TGrade> find();

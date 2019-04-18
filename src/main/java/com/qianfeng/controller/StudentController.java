@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qianfeng.common.JsonBean;
 import com.qianfeng.entity.TGrade;
 import com.qianfeng.entity.TSchedule;
+import com.qianfeng.entity.TStaff;
 import com.qianfeng.entity.TStudent;
 import com.qianfeng.service.StudentService;
 import com.qianfeng.utils.ImportExcel;
@@ -55,7 +56,7 @@ public class StudentController {
 
     @RequestMapping("/staffall.do")
     public JsonBean findAll() {
-        List<TSchedule> list = studentService.findName();
+        List<TStaff> list = studentService.findName();
         return JsonUtils.createJsonBean(0, list.size(), list);
     }
 

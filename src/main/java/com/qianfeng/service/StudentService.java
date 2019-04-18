@@ -2,6 +2,7 @@ package com.qianfeng.service;
 
 import com.qianfeng.entity.TGrade;
 import com.qianfeng.entity.TSchedule;
+import com.qianfeng.entity.TStaff;
 import com.qianfeng.entity.TStudent;
 import com.qianfeng.vo.VStu;
 
@@ -17,7 +18,7 @@ public interface StudentService {
 
     public void updateStu(TStudent student);
     public void addBatch(List<VStu> list);
-    public List<TSchedule> findName();
+    public List<TStaff> findName();
     public List<TGrade> findAll();
 
 }
