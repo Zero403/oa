@@ -3,6 +3,7 @@ package com.qianfeng.service.impl;
 import com.qianfeng.dao.TStudentMapper;
 import com.qianfeng.entity.TGrade;
 import com.qianfeng.entity.TSchedule;
+import com.qianfeng.entity.TStaff;
 import com.qianfeng.entity.TStudent;
 import com.qianfeng.service.StudentService;
 import com.qianfeng.vo.VStu;
@@ -77,11 +78,11 @@ public class StudentServiceimpl implements StudentService {
     }
 
     @Override
-    public List<TSchedule> findName() {
+    public List<TStaff> findName() {
 
-        List<TSchedule> list = null;
+        List<TStaff> list = null;
         try {
-            list = studentMapper.findAlls();
+            list = studentMapper.findAllSta();
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("错误");
