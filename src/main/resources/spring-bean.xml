@@ -25,7 +25,7 @@
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		  init-method="init" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://10.8.159.50:3306/oaxiangmu" />
+		<property name="url" value="jdbc:mysql://localhost:3306/oaxiangmu" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 		<!-- 配置初始化大小、最小、最大 -->
@@ -155,12 +155,16 @@
 		<!-- Shiro连接约束配置,即过滤链的定义 -->
 		<property name="filterChainDefinitions">
 			<value>
-				<!--/login.html = anon
+				/login.html = anon
 				/login.do = anon
 				/userloginout.do = logout
-				/*.html = roles
-				/*.do = perms-->
-
+				/media/css/** = anon
+				/media/fonts/** = anon
+				/media/image/** = anon
+				/media/js/** = anon
+				/media/layui/** = anon
+				/media/tem/** = anon
+				/** = authc
 
 				<!--  一般设置和认证相关的配置
 				 	和权限相关的一般使用注解

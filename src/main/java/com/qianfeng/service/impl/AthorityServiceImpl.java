@@ -51,9 +51,11 @@ public class AthorityServiceImpl implements AuthorityService {
 
     @Override
     public void delAuthority(int aid) {
-        int count = tAuthorityMapper.findFromRoleAuthority(aid);
-        if (count > 0){
-            throw new RuntimeException("改权限仍有角色使用,删除失败");
+        if (tAuthorityMapper.findCountByPId(aid) > 0){
+            throw new RuntimeException("该权限下仍有子权限,删除失败");
+        }
+        if (tAuthorityMapper.findFromRoleAuthority(aid) > 0){
+            throw new RuntimeException("该权限仍有角色使用,删除失败");
         }
 
         tAuthorityMapper.deleteByPrimaryKey(aid);

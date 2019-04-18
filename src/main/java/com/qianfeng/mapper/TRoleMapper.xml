@@ -91,7 +91,7 @@
     </collection>
   </resultMap>
   <select id="findAllRole" parameterType="map" resultMap="roleauthority">
-    SELECT a.title, r.* FROM t_roleauthority ar INNER JOIN t_authority a on ar.aid = a.id INNER JOIN t_role r on ar.rid = r.id
+    SELECT a.title, r.* FROM t_roleauthority ar INNER JOIN t_authority a on ar.aid = a.id RIGHT JOIN t_role r on ar.rid = r.id
     <where>
       <if test="no != null and no != ''">r.name like concat('%', #{no}, '%')</if>
     </where>

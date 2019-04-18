@@ -1,5 +1,7 @@
 package com.qianfeng.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class TCheck {
@@ -13,8 +15,10 @@ public class TCheck {
 
     private String startno;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startdate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date enddate;
 
     private Integer days;

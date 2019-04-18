@@ -1,10 +1,8 @@
-package com.qianfeng.entity;
-
-import org.springframework.format.annotation.DateTimeFormat;
+package com.qianfeng.vo;
 
 import java.util.Date;
 
-public class TGrade {
+public class VGrade {
     private Integer id;
 
     private String name;
@@ -13,12 +11,15 @@ public class TGrade {
 
     private Integer week;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdate;
 
     private String location;
 
     private Integer cid;
+
+    private Integer count;
+
+    private String cname;
 
     public Integer getId() {
         return id;
@@ -33,7 +34,7 @@ public class TGrade {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public Integer getFlag() {
@@ -65,7 +66,7 @@ public class TGrade {
     }
 
     public void setLocation(String location) {
-        this.location = location == null ? null : location.trim();
+        this.location = location;
     }
 
     public Integer getCid() {
@@ -74,5 +75,21 @@ public class TGrade {
 
     public void setCid(Integer cid) {
         this.cid = cid;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
     }
 }
