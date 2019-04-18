@@ -37,7 +37,7 @@ public class TDpartServiceImpl implements TDepartService{
 
     @Override
     public List<TDepart> findByPage(int page) {
-        PageHelper.startPage(page, 5);
+        PageHelper.startPage(page, 10);
         List<TDepart> list = tdpartDao.findAllTDpart();
 
 

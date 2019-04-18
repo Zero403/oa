@@ -6,13 +6,13 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface TScheduleMapper {
-    int deleteByPrimaryKey(String no);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(TSchedule record);
 
     int insertSelective(TSchedule record);
 
-    TSchedule selectByPrimaryKey(String no);
+    TSchedule selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(TSchedule record);
 

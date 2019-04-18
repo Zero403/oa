@@ -27,7 +27,8 @@
 				</div>
 			</div>
 		<div class="layui-form-item">
-				<input class="layui-btn" style="margin-left: 10%"  id="btn1" type="submit" value="确认导入">
+				<!--<input class="layui-btn" style="margin-left: 10%"  id="btn1" type="submit" value="确认导入">-->
+			<button class="layui-btn" lay-submit="" lay-filter="tbdata">确认导入</button>
 			</div>
 		
 		</form>
@@ -41,7 +42,7 @@
 		  //第一个实例
 		  table.render({
 		    elem: '#tbdata'
-		    ,url: 'staffpage.do' //数据接口
+		    ,url: 'staffbatch.do' //数据接口
 		    ,page: true //开启分页
 		    ,cols: [[ //表头
 		      {field: 'no', title: '工号', sort: true, fixed: 'left'}

@@ -27,7 +27,7 @@
 		  //第一个实例
 		  table.render({
 		    elem: '#tbdata'
-		    ,url: 'staffpage.do' //数据接口
+		    ,url: 'staffList.do' //数据接口
 		    ,page: true //开启分页
 		    ,cols: [[ //表头
 		      {field: 'no', title: '工号', sort: true, fixed: 'left'}
@@ -68,5 +68,55 @@
 	});
 
 </script>
+
+
+	<script>
+        layui.use('table', function(){
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#tbdata'
+                ,url: 'staffList.do' //数据接口
+                ,page: true //开启分页
+                ,cols: [[ //表头
+                    {field: 'no', title: '工号', sort: true, fixed: 'left'}
+                    ,{field: 'name', title: '员工名称'}
+                    ,{field: 'dname', title: '所属部门'}
+                    ,{field: 'sex', title: '性别'}
+                    ,{field: 'phone', title: '手机号'}
+                    ,{field: 'qq', title: 'qq号'}
+                    ,{field: 'email', title: '邮箱'}
+                    ,{field: 'createdate', title: '入职日期'}
+                    ,{field:'right', title: '操作',toolbar:"#barop"}
+                ]]
+            });
+            //监听工具条
+            table.on('tool(tbop)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'del'){
+                    layer.confirm('是否确认删除员工?', function(index){
+                        $.ajax({
+                            url: "staffdelete.do",
+                            type: "POST",
+                            data:"no="+data.no,
+                            success: function(data){
+                                if(data.code==1000){
+                                    obj.del();//删除表格中的对应行数据
+                                    layer.close(index);
+                                    layer.msg("删除成功", {icon: 6});
+                                }else{
+                                    layer.msg("删除失败", {icon: 5});
+                                }
+                            }
+                        });
+                    });
+                } else if(obj.event === 'edit'){//编辑 修改
+                    location.href="staffupdate.html?d="+ encodeURI(JSON.stringify(data));
+                }
+            });
+        });
+
+	</script>
 </body>
 </html>
