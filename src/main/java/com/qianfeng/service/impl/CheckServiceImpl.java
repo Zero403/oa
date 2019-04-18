@@ -3,6 +3,7 @@ package com.qianfeng.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.qianfeng.dao.TCheckMapper;
 import com.qianfeng.entity.TCheck;
+import com.qianfeng.entity.TUser;
 import com.qianfeng.service.CheckService;
 import com.qianfeng.utils.PageListUtil;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,15 @@ public class CheckServiceImpl implements CheckService {
     @Override
     public void delCheck(int id) {
         checkDao.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<TUser> allDeat() {
+        return checkDao.allDepar();
+    }
+
+    @Override
+    public void addProcess(TCheck check) {
+        checkDao.insertSelective(check);
     }
 }

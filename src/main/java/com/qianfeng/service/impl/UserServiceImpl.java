@@ -38,9 +38,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<VUser> findUserRole(String no, int flag) {
+    public List<VUser> findUserRole(String no, int flag, int page, int limit) {
 
-        List<VUser> list = tUserMapper.findAllUserWithRole(no, flag);
+        List<VUser> list = tUserMapper.findAllUserWithRole(no, flag, page, limit);
         return list;
     }
 
@@ -57,6 +57,11 @@ public class UserServiceImpl implements UserService {
             tUserroleMapper.insertUserRole(uid, rids);
         }
 
+    }
+
+    @Override
+    public int findUserCount() {
+        return tUserMapper.findUserCount();
     }
 
 

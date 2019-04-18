@@ -29,4 +29,7 @@ public interface TAuthorityMapper {
 
     @Select("SELECT count(1) FROM t_roleauthority WHERE aid = #{id}")
     int findFromRoleAuthority(int id);
+
+    @Select("SELECT count(1) FROM t_authority WHERE parentId = #{pid}")
+    int findCountByPId(int pid);
 }

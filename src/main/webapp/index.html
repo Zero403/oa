@@ -67,9 +67,9 @@
         <div class="layui-side-scroll">
 
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree"  lay-shrink="all" id="lm">
+            <ul class="layui-nav layui-nav-tree"  lay-shrink="" id="lm">
 
-                <li class="layui-nav-item layui-nav-itemed" v-for="items in menu">
+                <li class="layui-nav-item" v-for="items in menu">
                     <a href="javascript:;">{{items.pTitle}}</a>
                     <dl class="layui-nav-child" v-for="item in items.list">
                         <dd><a href="#" @click="javascript:showTab(item.id, item.aurl, item.title)">{{item.title}}</a></dd>

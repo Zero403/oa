@@ -214,4 +214,15 @@
    s.education,s.birthday,s.createdate from  t_student s left join t_grade c on s.gid = c.id
 
   </select>
+
+  <insert id="addBatch" parameterType="list" >
+    insert into t_student(<include refid="Base_Column_List" />)
+    values
+    <foreach collection="list" item="item" separator="," >
+      (#{item.no},#{item.name},#{item.sex},#{item.birthday},#{item.cardno},#{item.school},#{item.education},
+      #{item.gid},#{item.flag},#{item.email},#{item.qq},#{item.phone}, #{item.introno},#{item.createdate},#{item.photo} )
+    </foreach>
+
+
+  </insert>
 </mapper>

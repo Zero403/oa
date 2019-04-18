@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,7 +40,7 @@ public class StudentServiceimpl implements StudentService {
     public List<VStu> findStudent(int page, int limit) {
         List<VStu> list = null;
         try {
-            list = studentMapper.findAll(page,limit);
+            list = studentMapper.findAll(page, limit);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("查询异常！！！");
@@ -53,17 +54,40 @@ public class StudentServiceimpl implements StudentService {
     }
 
     @Override
+    public void addBatch(List<VStu> list) {
+        int count = 1;
+        List<VStu> tempList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+
+            tempList.add(list.get(i));
+            if (count % 100 != 0) {
+                count++;
+            } else {
+                studentMapper.addBatch(tempList);
+                tempList.clear();
+                count = 1;
+            }
+
+        }
+        if (tempList.size() != 0) {
+            studentMapper.addBatch(tempList);
+        }
+
+
+    }
+
+    @Override
     public List<TSchedule> findName() {
 
-            List<TSchedule> list = null;
-            try {
-                list = studentMapper.findAlls();
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw  new RuntimeException("错误");
-            }
-            return list;
+        List<TSchedule> list = null;
+        try {
+            list = studentMapper.findAlls();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("错误");
         }
+        return list;
+    }
 
     @Override
     public List<TGrade> findAll() {
@@ -72,7 +96,7 @@ public class StudentServiceimpl implements StudentService {
             list = studentMapper.find();
         } catch (Exception e) {
             e.printStackTrace();
-            throw  new RuntimeException("错误");
+            throw new RuntimeException("错误");
         }
         return list;
     }
