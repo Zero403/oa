@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -31,15 +32,10 @@ public class StaffController {
 
 
     @RequestMapping("/staffadd.do")
-    public JsonBean addStaff(TStaff tStaff) {
-        JsonBean bean = null;
-        try {
-            staffService.addStaff(tStaff);
-            bean = JsonUtils.createJsonBean(1, 10, null);
-        } catch (Exception e) {
-            bean = JsonUtils.createJsonBean(0, 10, e.getMessage());
-        }
-        return bean;
+    public void addStaff(TStaff tStaff, HttpServletResponse response) throws IOException {
+        tStaff.setFlag(1);
+        staffService.addStaff(tStaff);
+        response.sendRedirect("stafflist.html");
     }
 
     @RequestMapping("/staffList.do")
