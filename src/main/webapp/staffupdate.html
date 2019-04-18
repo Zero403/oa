@@ -108,6 +108,7 @@
 		</div>
 		<div class="layui-form-item">
 			<button class="layui-btn" lay-submit="" lay-filter="upfile">确认修改</button>
+			<!--<input class="layui-btn" style="margin-left: 10%"  id="btn1" disabled="disabled" type="submit" value="确认编辑">-->
 		</div>
 	</form>
 </div>
@@ -132,7 +133,7 @@
                         //上传完毕回调
                         console.log(obj);
                         if(obj.code==1){
-                            window.Location.href="stafflist.html"
+                            window.location.href = "stafflist.html"
                         }else{
                         }
                     }

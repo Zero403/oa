@@ -190,4 +190,14 @@
     </set>where no = #{no}
   </update>
 
+  <insert id="addBatch" parameterType="list">
+    insert into t_staff(<include refid="Base_Column_List" />)
+    values
+    <foreach collection="list" item="item" separator="," >
+      (#{item.no},#{item.name},#{item.did},#{item.flag},#{item.sex},#{item.email},
+      #{item.qq},#{item.phone},#{item.createdate},#{item.photo})
+    </foreach>
+
+  </insert>
+
 </mapper>

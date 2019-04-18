@@ -11,8 +11,14 @@ import com.qianfeng.service.StaffService;
 import com.qianfeng.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +87,9 @@ public class StaffController {
         bean = staffService.findAllDepart();
         return JsonUtils.createJsonBean(0,bean.size(),bean);
     }
+
+
+
 
 
 

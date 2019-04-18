@@ -23,12 +23,15 @@ public interface TStaffMapper {
     //展示所有
     public List<TStaff> findAll();
     //删除
-    public void delStaff(String on);
+    public void delStaff(String no);
     //编辑
     public void updateStaff(TStaff staff);
 
     @Select("SELECT * from t_depart ")
     public  List<TDepart> findAlldep();
+
+    //批量添加
+    public void addBatch(List<TStaff> list);
 
 
 }

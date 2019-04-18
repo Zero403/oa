@@ -117,16 +117,12 @@
                         ,url: 'staffadd.do' //上传接口
                         ,done: function(obj){
                             //上传完毕回调
-                            console.log(obj);
-                            if(obj.code==1){
-                                /*$("#p1").val(obj.msg);
+                          //  console.log(obj.code);
+                            if(obj.code==1) {
+                                $("#p1").val(obj.msg);
                                 $("#img1")[0].src="/tickresource/"+obj.msg;
-                                $("#btn1").attr("disabled",false);*/
-                                var t = parent.layui.table;//重新加载页面
-                                t.reload('text');
-								window.location.href = "staffadd.html"
-
-                            } else {
+                                $("#btn1").attr("disabled",false);
+                            }else {
                                 $("#img1")[0].src="media/images/cw1.jpg";
                             }
 

@@ -8,6 +8,7 @@ import com.qianfeng.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,9 +36,9 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public void delStaff(String on) {
+    public void delStaff(String no) {
         try {
-            tStaffMapper.delStaff(on);
+            tStaffMapper.delStaff(no);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,4 +61,23 @@ public class StaffServiceImpl implements StaffService {
         return bean;
     }
 
+    @Override
+    public void addTstaffBatch(List<TStaff> list) {
+        //每一百条数据，进行一次批量操作
+        int count = 1;
+        List<TStaff> tempList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            tempList.add(list.get(i));
+            if(count % 100 != 0) {
+                count++;
+            }else {
+                tStaffMapper.addBatch(tempList);
+                tempList.clear();
+                count = 1;
+            }
+        }
+        if(tempList.size() != 0){
+            tStaffMapper.addBatch(tempList);
+        }
+    }
 }

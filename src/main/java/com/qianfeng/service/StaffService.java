@@ -13,13 +13,16 @@ public interface StaffService {
     public List<TStaff> findAll();
 
     //删除
-    public void delStaff(String on);
+    public void delStaff(String no);
 
     //编辑
     public void updateStaff(TStaff staff);
 
     //增加部门信息
     public List<TDepart> findAllDepart();
+
+    //批量导入
+    public void addTstaffBatch(List<TStaff> list);
 
 
 }

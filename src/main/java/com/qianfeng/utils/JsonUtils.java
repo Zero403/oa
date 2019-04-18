@@ -1,6 +1,7 @@
 package com.qianfeng.utils;
 
 import com.qianfeng.common.JsonBean;
+import com.qianfeng.common.Layui;
 
 public class JsonUtils {
 
@@ -13,4 +14,6 @@ public class JsonUtils {
 		
 		return bean;
 	}
+
+
 }
