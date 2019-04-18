@@ -43,7 +43,7 @@ public class LoginController {
             tLoginlog.setCreatetime(new Date());
             IpUtils ipUtils = new IpUtils();
             tLoginlog.setIp(ip);
-            JsonIp ip1 = ipUtils.getAddresses("ip=" + ip, "utf-");
+            JsonIp ip1 = ipUtils.getAddresses("ip=" + ip, "utf-8");
             if (0 == ip1.getCode()){
                 tLoginlog.setLocation(ip1.getData().getRegion() + ip1.getData().getCity());
             }
