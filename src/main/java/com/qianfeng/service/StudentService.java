@@ -16,7 +16,7 @@ public interface StudentService {
     public List<VStu> findStudent(int page, int limit);
 
     public void updateStu(TStudent student);
-
+    public void addBatch(List<VStu> list);
     public List<TSchedule> findName();
     public List<TGrade> findAll();
 

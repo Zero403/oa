@@ -9,6 +9,25 @@ public class VStu {
     private String name;
     private String gname;
     private String sex;
+
+    public Integer getGid() {
+        return gid;
+    }
+
+    public void setGid(Integer gid) {
+        this.gid = gid;
+    }
+
+    public String getIntrono() {
+        return introno;
+    }
+
+    public void setIntrono(String introno) {
+        this.introno = introno;
+    }
+
+    private Integer gid;
+    private String introno;
     @DateTimeFormat(pattern ="YYYY-MM-dd")
     private Date birthday;
 
@@ -24,8 +43,28 @@ public class VStu {
 
     private String phone;
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    private String photo;
+
     @DateTimeFormat(pattern ="YYYY-MM-dd")
     private Date createdate;
+
+    public String getCardno() {
+        return cardno;
+    }
+
+    public void setCardno(String cardno) {
+        this.cardno = cardno;
+    }
+
+    private String cardno;
 
 
     public String getNo() {

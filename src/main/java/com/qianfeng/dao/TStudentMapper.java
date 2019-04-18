@@ -24,7 +24,9 @@ public interface TStudentMapper {
 
     List<VStu> findAll(@Param("page") int page, @Param("limit") int limit);
 
-    int selectById(String no);
+    // 批量添加
+
+    public void addBatch(List<VStu> list);
 
     @Select("select * from t_staff ")
     List<TSchedule> findAlls();
