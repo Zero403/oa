@@ -29,14 +29,14 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping("studentpage.do")
+    @RequestMapping("/studentpage.do")
     public JsonBean findAllStu(int page, int limit){
         List<VStu> list = studentService.findStudent(page - 1, limit);
 
         return JsonUtils.createJsonBean(0,list.size(),list);
 
     }
-    @RequestMapping("studentadd.do")
+    @RequestMapping("/studentadd.do")
     public void addStu(TStudent student, HttpServletRequest request, HttpServletResponse response) throws  Exception{
 
         student.setFlag(1);
@@ -46,20 +46,20 @@ public class StudentController {
         response.sendRedirect(request.getContextPath() + "/studentlist.html");
     }
 
-    @RequestMapping("studentdelete.do")
+    @RequestMapping("/studentdelete.do")
     public JsonBean deleteStu(String no) {
         studentService.deleteStuById(no);
         return JsonUtils.createJsonBean(1000,1,null);
     }
 
 
-    @RequestMapping("staffall.do")
+    @RequestMapping("/staffall.do")
     public JsonBean findAll() {
         List<TSchedule> list = studentService.findName();
         return JsonUtils.createJsonBean(0, list.size(), list);
     }
 
-    @RequestMapping("gradeall.do")
+    @RequestMapping("/gradeall.do")
     public JsonBean find() {
         List<TGrade> list = studentService.findAll();
         return JsonUtils.createJsonBean(0, list.size(), list);
