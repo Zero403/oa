@@ -84,9 +84,11 @@
    			read-only 是否只读，true 是，false 可读可写
    			如果有插入等操作，设为为true，运行程序会报异常-->
    			<tx:method name="add*" read-only="false" propagation="REQUIRED"/>
+   			<tx:method name="insert*" read-only="false" propagation="REQUIRED"/>
    			<tx:method name="delete*" read-only="false"  propagation="REQUIRED"/>
    			<tx:method name="update*" read-only="false"  propagation="REQUIRED"/>
    			<tx:method name="find*" read-only="true"  propagation="REQUIRED"/>
+   			<tx:method name="select*" read-only="true"  propagation="REQUIRED"/>
    			<!-- 针对其余的方法 -->
    			<tx:method name="*" propagation="NOT_SUPPORTED"/>
 
